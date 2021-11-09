@@ -1,0 +1,9 @@
+.example-container {
+    height: 90%;
+    margin: 10px;
+  }
+
+  .logout {
+     margin-left: 80%;
+     background-color: rgb(180, 13, 83);
+  }
