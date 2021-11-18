@@ -9,8 +9,9 @@ export class DataService {
 
   constructor(private _http: HttpClient) { }
 
-  url = "http://localhost:3000/user";
+  url = "./assets/loginData.json";
   url2 = "https://jsonplaceholder.typicode.com/users";
+  url3 = './assets/formData.json';
 
 
 // getAuthToken(userName: any, password: any)  {
@@ -32,6 +33,10 @@ getuser() {
 
 getData() {
   return this._http.get(this.url2);
+}
+
+getForm() {
+  return this._http.get<any>(this.url3);
 }
 
 authuser() {
