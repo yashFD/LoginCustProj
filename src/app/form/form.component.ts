@@ -16,9 +16,9 @@ export class FormComponent implements OnInit {
   constructor(private service: DataService, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.dynamicForm = this._formBuilder.group({
+    // this.dynamicForm = this._formBuilder.group({
 
-    });
+    // });
 
     // this.d1.forEach((item: any) => {
     //   this.dynamicForm.addControl(item.ElementName, this._formBuilder.control(null))
@@ -33,18 +33,22 @@ export class FormComponent implements OnInit {
   }
 
 
-  // createElement() {
-  //   this.d1.forEach((element: { ID: string; }) => {
-  //     this.dynamicForm.addControl(element.ID, new FormControl(''));
-  //   })
-    
-  // }
-
-  createElement2() {
-    this.d2.forEach((element: { ElementName: string; }) => {
-      this.dynamicForm.addControl(element.ElementName, this._formBuilder.control(''));
-    })
+  createFormGroup(data: any): FormGroup {
+    const formFields: any = {}; 
+    for (let i of data) {
+      for (let column of i.Column) {
+        if (column.Format === 'select' || column.Format === 'input' || column.Format === 'Field' || column.Format === 'checkbox') {
+          formFields[column.ElementId] = new FormControl()
+        }
+      }
+    }
+    console.log(formFields);
+    return new FormGroup(formFields);
   }
+
+
+
+
 
 
  fetchForm() {
@@ -56,7 +60,11 @@ export class FormComponent implements OnInit {
       this.d1 = res.Workspace.Body.Tasks[0].Task[0].Section[0].Row;
       this.d2 = res.Workspace.Body.Tasks[0].Task[1].Section[0].Row;
       this.d3 = res.Workspace.Body.Tasks[0].Task[2].Section[0].Row;
-     this.createElement2();
+
+      const d1Formgroup = this.createFormGroup(this.d1);
+      console.log(d1Formgroup.getRawValue());
+      
+     
     
   
     })

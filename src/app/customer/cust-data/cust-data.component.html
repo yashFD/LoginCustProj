@@ -1,17 +1,4 @@
-<div class="container">
-
-  <div class="mt-2">
-    <h3>Search Customers</h3>
-    <div class="mb-3">
-
-      <input type="text"  style="width: 300px;" placeholder="Enter Here" class="form-control"
-      (keyup)="child.filter($event)" >
-    </div>
-  </div>
-
-  <app-cust-data #child></app-cust-data>
-
-  <!-- <table style="width: 900px;" matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table style="width: 900px;" matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell mat-sort-header *matHeaderCellDef><strong>Name</strong> </th>
@@ -35,8 +22,5 @@
   </table>
   <mat-paginator #paginator style="width: 900px;" [pageSize]="3" [pageSizeOptions]="[3, 6, 10, 100]"
     aria-label="Select page">
-  </mat-paginator> -->
+  </mat-paginator>
 
-
-
-</div>

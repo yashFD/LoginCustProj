@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
+import { CustDataComponent } from './customer/cust-data/cust-data.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AuthInterceptor } from './auth.interceptor';
     NavigationComponent,
     HomeLayoutComponent,
     FormComponent,
-    CustomerComponent
+    CustomerComponent,
+    CustDataComponent
+  
   ],
   imports: [
     BrowserModule,
