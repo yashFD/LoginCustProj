@@ -1,15 +1,23 @@
 <div class="container">
-
-  <div class="mt-2">
-    <h3>Search Customers</h3>
-    <div class="mb-3">
-
-      <input type="text"  style="width: 300px;" placeholder="Enter Here" class="form-control"
-      (keyup)="child.filter($event)" >
+  <h3>Search Customers</h3>
+<div class="row">
+  
+    <div class="mb-3 col-md-3">
+      <input type="text"  style="width: 200px;" placeholder="Search Name" class="form-control"
+      [(ngModel)]="searchterm" (input)="searchterm" >   
+    </div>
+    <div class="col-md-3">
+      <input type="text"  style="width: 200px;" placeholder="Search Username" class="form-control"
+      [(ngModel)]="searchterm2" (input)="searchterm2" >
+    </div>
+    <div class="col-md-3">
+      <input type="text"  style="width: 200px;" placeholder="Search Email" class="form-control"
+      [(ngModel)]="searchterm3" (input)="searchterm3" >
+    </div>
     </div>
   </div>
 
-  <app-cust-data #child></app-cust-data>
+  <app-cust-data [dataSearch]="searchterm" [dataSearch]="searchterm2" [dataSearch]="searchterm3" ></app-cust-data>
 
   <!-- <table style="width: 900px;" matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
@@ -39,4 +47,3 @@
 
 
 
-</div>
