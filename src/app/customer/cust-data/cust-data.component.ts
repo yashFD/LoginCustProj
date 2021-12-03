@@ -11,40 +11,80 @@ import { DataService } from '../../data.service';
   styleUrls: ['./cust-data.component.css']
 })
 
- export class CustDataComponent implements OnInit, OnChanges {
+export class CustDataComponent implements OnInit, OnChanges {
 
-
-  
   @ViewChild('paginator') paginator!: MatPaginator;
   @ViewChild(MatSort) marSort!: MatSort;
 
-  displayedColumns = ['name','username','email'];
-  dataSource! : MatTableDataSource<any>;
+  displayedColumns = ['name', 'username', 'email'];
+  dataSource!: MatTableDataSource<any>;
   searchSource!: any;
 
   constructor(private service: DataService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
-   if (changes.dataSearch && changes.dataSearch.currentValue) {
-     const filterlist =  this.sortCust(this.dataSearch);
-     this.dataInit(filterlist);
-   }
+    // if (changes.dataSearch && changes.dataSearch.currentValue) {
+    //   const filterlist = this.sortCust(this.dataSearch);
+    //   this.dataInit(filterlist);
+    //   console.log(this.dataSearch)
+    // }
+       
+    this.onSubmit();
+
+
+
   }
 
- dataInit(data: any) {
-  this.dataSource = new MatTableDataSource(data);
-  this.dataSource.paginator = this.paginator;
-  this.dataSource.sort = this.marSort;
- }
+  dataInit(data: any) {
+    this.dataSource = new MatTableDataSource(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.marSort;
+  }
 
 
   ngOnInit(): void {
-    this.service.getData().subscribe((res: any) =>{
-     this.dataInit(res);
+    this.service.getData().subscribe((res: any) => {
+      this.dataInit(res);
       this.searchSource = res;
-      console.log(res);    
+      // console.log(res);
+      console.log(this.searchSource);
+     
+      
     })
   }
+
+
+
+  @Input() FormSearch: any;
+
+  onSubmit() {
+    console.log(this.FormSearch.value);
+  }
+
+  // @Input() dataSearch: any;
+
+  // get searchterm(): string {
+  //   return this.dataSearch;
+  // }
+
+  // set searchterm(value: string) {
+  //   console.log(this.dataSearch);
+  //   this.dataSearch = value;
+  //   this.dataSource = this.searchterm ? this.sortCust(this.searchterm) : this.dataSource;
+  // }
+
+  // sortCust(searchString: string) {
+  //   return this.searchSource.filter(
+  //     (filterCust: any) =>
+  //       filterCust.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 ||
+  //       filterCust.username.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 ||
+  //       filterCust.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1
+  //   );
+  // }
+
+
+}
+
 
   // public filter(term: string = "") {
   //   term = term.trim(); // remove empty space 
@@ -61,27 +101,5 @@ import { DataService } from '../../data.service';
   // }
 
 
-  @Input() dataSearch: any;
-  
-  get searchterm(): string {
-    return this.dataSearch;
-  }
 
-  set searchterm(value: string) {
-    this.dataSearch = value;
-    this.dataSource = this.searchterm ? this.sortCust(this.searchterm) : this.dataSource;
-  }
-
-  sortCust(searchString: string) {
-    return this.searchSource.filter(
-      (filterCust: any) =>
-      filterCust.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 ||
-      filterCust.username.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 ||
-      filterCust.email.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 
-    );
-   
-  }
-
-
-}
 

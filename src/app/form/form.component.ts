@@ -37,15 +37,13 @@ export class FormComponent implements OnInit {
     for (let i of data) {
       for (let column of i.Column) {
         if (column.Format === 'select' || column.Format === 'input' || column.Format === 'Field' || column.Format === 'checkbox') {
-          formFields[column.ElementId] = new FormControl()
+          formFields[column.ElementName] = new FormControl()
         }
       }
     }
-    console.log(formFields);
+    // console.log(formFields);
     return new FormGroup(formFields);
   }
-
-
 
 
 
@@ -63,9 +61,6 @@ export class FormComponent implements OnInit {
       const d1Formgroup = this.createFormGroup(this.d1);
       console.log(d1Formgroup.getRawValue());
       
-     
-    
-  
     })
  }
 
