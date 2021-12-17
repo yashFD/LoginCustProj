@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import {map} from 'rxjs/operators';
 
 
 @Injectable({
@@ -36,7 +37,11 @@ getData() {
 }
 
 getForm() {
-  return this._http.get<any>(this.url3);
+  return this._http.get<any>(this.url3).pipe(
+    map((res: any)=> {
+      return res;
+    })
+  )
 }
 
 authuser() {

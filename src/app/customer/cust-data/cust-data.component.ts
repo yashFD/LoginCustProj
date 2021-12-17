@@ -30,9 +30,7 @@ export class CustDataComponent implements OnInit, OnChanges {
     // }
        
     this.onSubmit();
-
-
-
+    
   }
 
   dataInit(data: any) {
@@ -48,7 +46,6 @@ export class CustDataComponent implements OnInit, OnChanges {
       this.searchSource = res;
       // console.log(res);
       console.log(this.searchSource);
-     
       
     })
   }

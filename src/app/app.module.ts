@@ -18,6 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor';
 import { CustDataComponent } from './customer/cust-data/cust-data.component';
+import { Form2Component } from './form2/form2.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { CustDataComponent } from './customer/cust-data/cust-data.component';
     HomeLayoutComponent,
     FormComponent,
     CustomerComponent,
-    CustDataComponent
+    CustDataComponent,
+    Form2Component
   
   ],
   imports: [

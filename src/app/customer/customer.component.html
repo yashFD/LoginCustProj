@@ -1,41 +1,41 @@
 <div class="container">
   <h3>Search Customers</h3>
-  <form  [formGroup]="searchForm">
-<div class="row mt-3" >
-  <div class="col-md-3 mb-3">
-  <select class="custom-select" style="width: 200px;" name="searchBy" formControlName="searchBy" >
-    <option selected>Search By</option>
-    <option value="A">Option A</option>
-    <option value="B">Option B</option>
-  </select>
-  </div>
-  <div class="col-md-3 mb-3">
-    <select class="custom-select"  style="width: 200px;" name="searchType" formControlName="searchType" >
-      <option selected>Search Type</option>
-      <option value="IndA">Ind A</option>
-      <option value="IndB">Ind B</option>
-    </select>
-  </div>
-  <div class="col-md-3 mb-3">
-    <input type="text"  style="width: 200px;" placeholder="First Name"
-    name="firstName" formControlName="firstName" class="form-control" >
-  </div>
+  <form [formGroup]="searchForm">
+    <div class="row mt-3">
+      <div class="col-md-3 mb-3">
+        <select class="custom-select" style="width: 200px;" name="searchBy" formControlName="searchBy">
+          <option selected>Search By</option>
+          <option value="A">Option A</option>
+          <option value="B">Option B</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <select class="custom-select" style="width: 200px;" name="searchType" formControlName="searchType">
+          <option selected>Search Type</option>
+          <option value="IndA">Ind A</option>
+          <option value="IndB">Ind B</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <input type="text" style="width: 200px;" placeholder="First Name" name="firstName" formControlName="firstName"
+          class="form-control">
+      </div>
 
-  <div class="col-md-3 mb-3">
-    <input type="text"  style="width: 200px;" placeholder="Last Name" 
-    name="lastName" formControlName="lastName"  class="form-control" >
-  </div>
-    
+      <div class="col-md-3 mb-3">
+        <input type="text" style="width: 200px;" placeholder="Last Name" name="lastName" formControlName="lastName"
+          class="form-control">
+      </div>
+
     </div>
-    
-     </form>
+
+  </form>
 
 
-  </div>
+</div>
 
-  <app-cust-data [FormSearch]=searchForm ></app-cust-data>
+<app-cust-data [FormSearch]=searchForm></app-cust-data>
 
-  <!-- <table style="width: 900px;" matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<!-- <table style="width: 900px;" matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <ng-container matColumnDef="name">
       <th mat-header-cell mat-sort-header *matHeaderCellDef><strong>Name</strong> </th>
@@ -61,7 +61,7 @@
     aria-label="Select page">
   </mat-paginator> -->
 
-  <!-- <div class="mb-2 col-md-3">
+<!-- <div class="mb-2 col-md-3">
     <input type="text"  style="width: 200px;" placeholder="Search Name" class="form-control"
     [(ngModel)]="searchterm" (input)="searchterm" >   
   </div>
@@ -72,5 +72,4 @@
   <div class="col-md-3">
     <input type="text"  style="width: 200px;" placeholder="Search Email" class="form-control"
     [(ngModel)]="searchterm3" (input)="searchterm3" >
-  </div> --> -->
-
+  </div> -->

@@ -1,32 +1,33 @@
-<!-- <div class="container">
-    <form [formGroup]="dynamicForm">
+ <div class="container">
+    <form #dynamicForm="ngForm"  (ngSubmit)="onSubmit(dynamicForm)">
     <div *ngFor="let form of d1">
 
         <div class="row">
-        
                 <div class="col-md-3" *ngFor="let f2 of form.Column">
-
-                      
+       
                     <div class="container" [ngSwitch]="f2.Format">
-                                <div *ngSwitchCase="'select'">
+                         <div *ngSwitchCase="'select'">
 
                             <div class="form-group">
                                 <label for="sel1">{{f2.ElementName}}</label>
-                                <select class="form-control" [formControlName]="f2.ElementName"  name="{{f2.ElementName}}" >
+                                <select class="form-control"  name="{{f2.ElementName}}"  ngModel #f2.ElementName="ngModel" required>
                                     <option value="one">1</option>
                                     <option value="two">2</option>
                                     <option value="three">3</option>
                                 </select>
+                                <div class="alert alert-danger" *ngIf="f2.ElementName.invalid && (f2.ElementName.touched || f2.ElementName.dirty)">
+                                    <div *ngIf="f2.ElementName.errors.required">
+                                        Please Select Options
+                                    </div>
+                                </div>
                             </div>
-
-
 
                         </div>
 
                         <div *ngSwitchCase="'checkbox'">
 
                             <div class="form-check">
-                                <input class="form-check-input" name="{{f2.ElementName}}"   [formControlName]="f2.ElementName" type="checkbox" value="checked" >
+                                <input class="form-check-input" name="{{f2.ElementName}}"  type="checkbox" value="checked" ngModel>
                                 <label class="form-check-label" for="flexCheckDefault">
                                     {{f2.ElementName}}
                                 </label>
@@ -35,11 +36,14 @@
                         </div>
 
                         <div *ngSwitchCase="'input'">
-
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">{{f2.ElementName}}</label>
-                                <input type="text" class="form-control"  name="{{f2.ElementName}}"  [formControlName]="f2.ElementName" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <input type="text" class="form-control" name="{{f2.ElementName}}"  #{{f2.ElementName}}="ngModel" maxlength="{{f2.MaxLength}}" ngModel required>
+                                <div class="alert alert-danger" *ngIf="f2.ElementName.invalid && (f2.ElementName.touched || f2.ElementName.dirty)">
+                                    <div *ngIf="f2.ElementName.errors.required">
+                                        Please Fill This field
+                                    </div>
+    
 
                             </div>
 
@@ -50,10 +54,14 @@
                 </div>
 
         </div>
-    
     </div>
+    </div>
+    <button type="submit"  class="btn btn-primary">submit</button>
+</form>
 
-    <hr> -->
+</div>
+
+    <hr> 
 
 
 
@@ -87,7 +95,126 @@
     </div> -->
 
 
-<!-- 
-</form>
-<button type="submit" (click)="onSubmit()" class="btn btn-primary">submit</button>
-</div> -->
+
+
+
+
+<!-- <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="" >
+     <div class="headerstyle">Verify Applicant</div> 
+     <ng-container *ngFor="let eaca of eachSectionArr ">
+       
+       <ng-container *ngFor="let rows of eaca.Section[0].Row">
+      
+        <div style ="clear:both">
+    
+         <ng-container *ngFor="let column of rows.Column; 
+         let odd=odd;
+         let last=last;
+         let first=first">
+         <ng-container *ngIf="column.HEADER_CUSTOM_TEXT != null">
+          <div class="headerstyle">{{column.HEADER_CUSTOM_TEXT}}</div>
+         </ng-container>
+           <div [ngClass]="odd?'col-2':'col-1'">
+           <ng-container *ngIf="column.HEADER_CUSTOM_TEXT == null">
+           <div class="labelstyle"> {{column.Value}}</div>
+           </ng-container>
+            
+            <div [ngSwitch]="column.Format">
+              <div *ngSwitchCase="'select'">  
+              <mat-form-field appearance="outline" maxlength="column.MaxLength" fisStyle appearance="outline" style="width:100%;">
+               
+               
+               
+               </mat-form-field>
+              </div>
+    
+              <div *ngSwitchCase="'checkbox'">
+    
+               <div class="form-check" style="float:left;">
+                 <input class="form-check-input" maxlength="column.MaxLength" type="checkbox" value="" id="flexCheckDefault">
+                 <label class="form-check-label" for="flexCheckDefault">
+    
+                 </label>
+               </div>
+               <label class="labelstyle">{{column.LabelValue}}</label>
+              </div>
+    
+              <div *ngSwitchCase="'input'">
+              
+              <mat-form-field appearance="outline" fisStyle style="width:100%">
+               <input
+                matInput
+                placeholder="{{column.LabelValue}}"
+                type="text"           
+                fisStyle     
+                class="form-control inp-size"             
+                formControlName="{{ column.Name }}" 
+                maxlength="{{ column.MaxLength }}" 
+               />
+               </mat-form-field>
+    
+               {{column.Name | json }} is required
+              </div>
+            
+              <div *ngSwitchCase="'fieldSearch'">
+                       
+                       
+            
+             
+            </div>
+            <div *ngSwitchCase="'integernocomma'">
+               
+             <mat-form-field appearance="outline" fisStyle style="width:100%">
+             <input
+              matInput
+              placeholder="{{column.LabelValue}}"
+              type="text"         
+              
+              fisStyle     
+              class="form-control inp-size" 
+              maxlength="{{ column.MaxLength }}" 
+              formControlName="{{ column.Name }}"      
+             />
+             </mat-form-field>{{column.Name}} is required
+           
+            
+            
+           </div>
+           <div *ngSwitchCase="'phone'">           
+            <mat-form-field appearance="outline" fisStyle style="width:100%">
+            <input
+             matInput
+             placeholder="{{column.LabelValue}}"
+             type="text"         
+             fisStyle     
+             class="form-control inp-size" 
+             maxlength="{{ column.MaxLength }}" 
+             formControlName="{{ column.Name }}"      
+            />
+            </mat-form-field>{{column.errors| json}}
+            
+          </div>
+            </div>
+    
+           </div>
+    
+         </ng-container>
+    
+        </div>
+      </ng-container>
+     
+     </ng-container>
+     <div>
+    </div>
+    </div>
+    
+    <div style ="clear:both">
+
+      <button type="submit" 
+            class="button btn-primary" 
+            >Next</button>
+      
+    </div>
+    
+     </form> -->
